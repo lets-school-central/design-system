@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { melt } from '@melt-ui/svelte';
+	import { melt, createAvatar } from '@melt-ui/svelte';
 	import type { AvatarFallbackProps } from './index.js';
 	import { cn } from '$lib/utils.js';
 	import { getContext } from 'svelte';
@@ -9,7 +9,9 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	const { fallback } = getContext('AVATAR_FALLBACK');
+	const { fallback } = getContext<{
+		fallback: ReturnType<typeof createAvatar>['elements']['fallback'];
+	}>('AVATAR_FALLBACK');
 </script>
 
 <span

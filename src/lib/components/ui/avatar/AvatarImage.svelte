@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { melt } from '@melt-ui/svelte';
+	import { createAvatar, melt } from '@melt-ui/svelte';
 	import type { AvatarImageProps } from './index.js';
 	import { cn } from '$lib/utils.js';
 	import { getContext } from 'svelte';
@@ -11,7 +11,10 @@
 	export let src: $$Props['src'] = undefined;
 	export let alt: $$Props['alt'] = undefined;
 
-	const { image, options } = getContext('AVATAR_IMAGE');
+	const { image, options } = getContext<{
+		image: ReturnType<typeof createAvatar>['elements']['image'];
+		options: ReturnType<typeof createAvatar>['options'];
+	}>('AVATAR_IMAGE');
 	$: if (src) options.src.set(src);
 </script>
 

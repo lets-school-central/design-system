@@ -1,5 +1,4 @@
 import { cva } from 'class-variance-authority';
-import type { Builder } from '$internal/types.js';
 import type { HTMLAnchorAttributes, HTMLButtonAttributes } from 'svelte/elements';
 import type { VariantProps } from 'class-variance-authority';
 

@@ -13,6 +13,7 @@
 	export let type: $$Props['type'] = undefined;
 </script>
 
+<!-- svelte-ignore a11y-no-static-element-interactions -->
 <svelte:element
 	this={href ? 'a' : 'button'}
 	class={cn(buttonVariants({ variant, size, className }))}

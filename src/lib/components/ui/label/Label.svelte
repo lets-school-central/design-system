@@ -6,7 +6,7 @@
 		elements: { root: label }
 	} = createLabel();
 
-	import { cn } from '$lib/utils';
+	import { cn } from '$lib/utils.js';
 
 	type $$Props = LabelProps;
 

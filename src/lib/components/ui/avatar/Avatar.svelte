@@ -11,7 +11,7 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let delayMs: $$Props['delayMs'] = undefined;
+	export let delayMs: $$Props['delayMs'] = 0;
 	export let loadingStatus: $$Props['loadingStatus'] = undefined;
 
 	const {
@@ -31,7 +31,7 @@
 	setContext('AVATAR_FALLBACK', { fallback });
 
 	$: loadingStatus !== undefined && localLoadingStatus.set(loadingStatus);
-	$: options.delayMs.set(delayMs);
+	$: options.delayMs.set(delayMs ?? 0);
 </script>
 
 <div

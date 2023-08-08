@@ -1,6 +1,15 @@
 import { expect, test } from '@playwright/test';
 
-test('index page has expected h1', async ({ page }) => {
+test('index', async ({ page }) => {
 	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Welcome to SvelteKit' })).toBeVisible();
+
+	const button = await page.$('text=Click me');
+	const label = await page.$('text=Hello world');
+
+	expect(button).not.toBeNull();
+	expect(label).not.toBeNull();
+
+	expect(await label?.textContent()).toBe('Hello world');
+	await button?.click();
+	expect(await label?.textContent()).toBe('Clicked');
 });

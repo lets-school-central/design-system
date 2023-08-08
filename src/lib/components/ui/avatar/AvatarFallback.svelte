@@ -9,9 +9,9 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	const { fallback } = getContext<{
-		fallback: ReturnType<typeof createAvatar>['elements']['fallback'];
-	}>('AVATAR');
+	const {
+		elements: { fallback }
+	} = getContext<ReturnType<typeof createAvatar>>('melt:avatar');
 </script>
 
 <span

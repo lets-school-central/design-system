@@ -11,10 +11,10 @@
 	export let src: $$Props['src'] = undefined;
 	export let alt: $$Props['alt'] = undefined;
 
-	const { image, options } = getContext<{
-		image: ReturnType<typeof createAvatar>['elements']['image'];
-		options: ReturnType<typeof createAvatar>['options'];
-	}>('AVATAR');
+	const {
+		elements: { image },
+		options
+	} = getContext<ReturnType<typeof createAvatar>>('melt:avatar');
 	$: if (src) options.src.set(src);
 </script>
 

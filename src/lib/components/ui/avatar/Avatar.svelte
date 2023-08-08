@@ -13,15 +13,13 @@
 	export { className as class };
 	export let delayMs: $$Props['delayMs'] = 0;
 
-	const {
-		elements: { image, fallback },
-		options
-	} = createAvatar({
+	const avatar = createAvatar({
 		src: '',
 		delayMs
 	});
+	const { options } = avatar;
 
-	setContext('AVATAR', { image, fallback, options });
+	setContext('melt:avatar', avatar);
 
 	$: options.delayMs.set(delayMs ?? 0);
 </script>

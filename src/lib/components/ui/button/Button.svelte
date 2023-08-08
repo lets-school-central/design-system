@@ -16,9 +16,10 @@
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <svelte:element
 	this={href ? 'a' : 'button'}
-	class={cn(buttonVariants({ variant, size, className }))}
+	class={cn(buttonVariants({ variant, size }), className)}
 	type={href ? undefined : type}
 	{href}
+	role={href ? 'button' : undefined}
 	on:click
 	on:change
 	on:keydown

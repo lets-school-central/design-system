@@ -11,7 +11,7 @@
 
 	const { fallback } = getContext<{
 		fallback: ReturnType<typeof createAvatar>['elements']['fallback'];
-	}>('AVATAR_FALLBACK');
+	}>('AVATAR');
 </script>
 
 <span

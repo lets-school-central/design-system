@@ -12,25 +12,17 @@
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let delayMs: $$Props['delayMs'] = 0;
-	export let loadingStatus: $$Props['loadingStatus'] = undefined;
 
 	const {
 		elements: { image, fallback },
-		states: { loadingStatus: localLoadingStatus },
 		options
 	} = createAvatar({
 		src: '',
-		delayMs,
-		onLoadingStatusChange: ({ next }) => {
-			loadingStatus = next;
-			return next;
-		}
+		delayMs
 	});
 
-	setContext('AVATAR_IMAGE', { image, options });
-	setContext('AVATAR_FALLBACK', { fallback });
+	setContext('AVATAR', { image, fallback, options });
 
-	$: loadingStatus !== undefined && localLoadingStatus.set(loadingStatus);
 	$: options.delayMs.set(delayMs ?? 0);
 </script>
 

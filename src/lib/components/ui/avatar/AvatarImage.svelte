@@ -14,7 +14,7 @@
 	const { image, options } = getContext<{
 		image: ReturnType<typeof createAvatar>['elements']['image'];
 		options: ReturnType<typeof createAvatar>['options'];
-	}>('AVATAR_IMAGE');
+	}>('AVATAR');
 	$: if (src) options.src.set(src);
 </script>
 

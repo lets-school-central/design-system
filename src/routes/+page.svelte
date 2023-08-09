@@ -1,7 +1,7 @@
 <script>
 	import Button from '$components/ui/button/Button.svelte';
 	import Label from '$components/ui/label/Label.svelte';
-	import Avatar from '$components/ui/avatar/Avatar.svelte';
+	import Avatar from '$components/primitives/avatar/Avatar.svelte';
 	import Accordion from '$components/primitives/accordion/Accordion.svelte';
 	import Checkbox from '$components/ui/checkbox/Checkbox.svelte';
 	import Badge from '$components/ui/badge/Badge.svelte';

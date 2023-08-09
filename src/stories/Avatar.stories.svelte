@@ -1,7 +1,7 @@
 <script>
 	import { Meta, Story, Template } from '@storybook/addon-svelte-csf';
 
-	import Avatar from '$components/ui/avatar/Avatar.svelte';
+	import Avatar from '$components/primitives/avatar/Avatar.svelte';
 </script>
 
 <Meta title="Avatar" component={Avatar} />

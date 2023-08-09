@@ -1,7 +1,7 @@
 <script>
 	import { Meta, Story, Template } from '@storybook/addon-svelte-csf';
 
-	import Button from '$components/ui/button/Button.svelte';
+	import Button from '$components/primitives/button/Button.svelte';
 
 	let count = 0;
 	function handleClick() {

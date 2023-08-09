@@ -1,6 +1,6 @@
 <script>
 	import Button from '$components/primitives/button/Button.svelte';
-	import Label from '$components/ui/label/Label.svelte';
+	import Label from '$components/primitives/label/Label.svelte';
 	import Avatar from '$components/primitives/avatar/Avatar.svelte';
 	import Accordion from '$components/primitives/accordion/Accordion.svelte';
 	import Checkbox from '$components/primitives/checkbox/Checkbox.svelte';

@@ -4,6 +4,7 @@
 	import Avatar from '$components/ui/avatar/Avatar.svelte';
 	import Accordion from '$components/ui/accordion/Accordion.svelte';
 	import Checkbox from '$components/ui/checkbox/Checkbox.svelte';
+	import Badge from '$components/ui/badge/Badge.svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -45,3 +46,6 @@
 </Accordion>
 
 <Checkbox />
+
+<Badge>badge</Badge>
+<Badge href="/">badge with link</Badge>

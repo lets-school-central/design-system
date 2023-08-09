@@ -7,6 +7,7 @@
 	import Badge from '$components/primitives/badge/Badge.svelte';
 	import AspectRatio from '$components/primitives/aspect-ratio/AspectRatio.svelte';
 	import Input from '$components/primitives/input/Input.svelte';
+	import Separator from '$components/primitives/separator/Separator.svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -49,8 +50,10 @@
 
 <Checkbox />
 
-<Badge>badge</Badge>
-<Badge href="/">badge with link</Badge>
+<div class="flex items-center space-x-3.5">
+	<Badge>badge</Badge>
+	<Badge href="/">badge with link</Badge>
+</div>
 
 <div class="max-w-2xl">
 	<AspectRatio ratio={16 / 9} class="bg-muted">
@@ -63,3 +66,18 @@
 </div>
 
 <Input placeholder="Placeholder" />
+
+<div>
+	<div class="space-y-1">
+		<h4 class="text-sm font-medium leading-none">Radix Primitives</h4>
+		<p class="text-sm text-muted-foreground">An open-source UI component library.</p>
+	</div>
+	<Separator class="my-4" />
+	<div class="flex h-5 items-center space-x-4 text-sm">
+		<div>Blog</div>
+		<Separator orientation="vertical" />
+		<div>Docs</div>
+		<Separator orientation="vertical" />
+		<div>Source</div>
+	</div>
+</div>

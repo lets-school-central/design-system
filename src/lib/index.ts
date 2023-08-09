@@ -6,3 +6,4 @@ export * from '$components/primitives/button/index.js';
 export * from '$components/primitives/checkbox/index.js';
 export * from '$components/primitives/input/index.js';
 export * from '$components/primitives/label/index.js';
+export * from '$components/primitives/separator/index.js';

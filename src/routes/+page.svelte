@@ -5,6 +5,7 @@
 	import Accordion from '$components/ui/accordion/Accordion.svelte';
 	import Checkbox from '$components/ui/checkbox/Checkbox.svelte';
 	import Badge from '$components/ui/badge/Badge.svelte';
+	import AspectRatio from '$components/ui/aspect-ratio/AspectRatio.svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -49,3 +50,11 @@
 
 <Badge>badge</Badge>
 <Badge href="/">badge with link</Badge>
+
+<AspectRatio ratio={16 / 9} class="bg-muted">
+	<img
+		src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+		alt="Gray by Drew Beamer"
+		class="rounded-md object-cover h-full w-full"
+	/>
+</AspectRatio>

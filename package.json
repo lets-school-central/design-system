@@ -8,8 +8,9 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
+		"build:css": "pnpm postcss ./src/app.postcss -o ./dist/index.min.css",
 		"preview": "vite preview",
-		"package": "svelte-kit sync && svelte-package && publint",
+		"package": "svelte-kit sync && svelte-package && publint && npm run build:css",
 		"prepublishOnly": "npm run package",
 		"test": "npm run test:integration && npm run test:unit",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -28,12 +29,19 @@
 		}
 	},
 	"files": [
+		"plugin.d.ts",
+		"plugin.js",
 		"dist",
 		"!dist/**/*.test.*",
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"class-variance-authority": "^0.7.0",
+		"clsx": "^2.0.0",
+		"lucide-svelte": "^0.265.0",
+		"svelte": "^4.0.0",
+		"tailwind-merge": "^1.14.0",
+		"tailwindcss": "^3.3.2"
 	},
 	"devDependencies": {
 		"@melt-ui/pp": "^0.1.1",
@@ -51,20 +59,19 @@
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.20.4",
 		"@sveltejs/package": "^2.0.0",
-		"@tailwindcss/forms": "^0.5.3",
-		"@tailwindcss/typography": "^0.5.9",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"autoprefixer": "^10.4.14",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
+		"cssnano": "^6.0.1",
 		"eslint": "^8.28.0",
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-storybook": "^0.6.13",
 		"eslint-plugin-svelte": "^2.30.0",
 		"lucide-svelte": "^0.265.0",
-		"nanoid": "^4.0.2",
 		"postcss": "^8.4.24",
+		"postcss-cli": "^10.1.0",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
@@ -76,7 +83,6 @@
 		"svelte-check": "^3.4.3",
 		"tailwind-merge": "^1.14.0",
 		"tailwindcss": "^3.3.2",
-		"tailwindcss-animate": "^1.0.6",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2",

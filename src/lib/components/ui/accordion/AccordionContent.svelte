@@ -21,10 +21,7 @@
 {#if $isSelected(item.value)}
 	<div
 		use:melt={$content(item)}
-		class={cn(
-			'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
-			className
-		)}
+		class={cn('overflow-hidden text-sm ', className)}
 		transition:slide
 		{...$$restProps}
 	>

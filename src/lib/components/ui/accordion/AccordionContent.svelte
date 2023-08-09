@@ -5,17 +5,11 @@
 	import { slide } from 'svelte/transition';
 
 	import type { AccordionContentProps, AccordionItemBaseProps } from './index.js';
-	import type { Transition } from '$lib/utils.js';
 
-	type T = $$Generic<Transition>;
-	type $$Props = AccordionContentProps<T>;
+	type $$Props = AccordionContentProps;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let transition: $$Props['transition'] = undefined;
-	export let transitionConfig: $$Props['transitionConfig'] = undefined;
-
-	let t = transition ?? slide;
 
 	const {
 		elements: { content },
@@ -31,7 +25,7 @@
 			'overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down',
 			className
 		)}
-		transition:t={transitionConfig}
+		transition:slide
 		{...$$restProps}
 	>
 		<div class="pb-4 pt-0">

@@ -35,7 +35,7 @@
 
 	$: options.disabled.set(disabled ?? false);
 	$: options.name.set(name);
-	$: options.name.set(required ?? false);
+	$: options.required.set(required ?? false);
 	$: options.value.set(value);
 </script>
 

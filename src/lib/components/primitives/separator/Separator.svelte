@@ -6,7 +6,7 @@
 
 	type $$Props = SeparatorProps;
 
-	let className: string | undefined = undefined;
+	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let orientation: $$Props['orientation'] = 'horizontal';
 	export let decorative: $$Props['decorative'] = true;

@@ -5,7 +5,7 @@
 
 	type $$Props = AspectRatioProps;
 
-	let className: string | undefined = undefined;
+	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let ratio: $$Props['ratio'] = 4 / 3;
 </script>

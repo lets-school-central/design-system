@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { cn } from '$lib/utils';
+	import { cn } from '$lib/utils.js';
 
 	import type { HTMLInputAttributes } from 'svelte/elements';
 
 	type $$Props = HTMLInputAttributes;
 
-	let className: string | undefined = undefined;
+	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let value: $$Props['value'] = undefined;
 </script>

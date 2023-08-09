@@ -1,5 +1,5 @@
 export * from '$components/primitives/accordion/index.js';
-export * from './components/ui/aspect-ratio/index.js';
+export * from '$components/primitives/aspect-ratio/index.js';
 export * from './components/ui/avatar/index.js';
 export * from './components/ui/badge/index.js';
 export * from './components/ui/button/index.js';

@@ -5,7 +5,7 @@
 	import Accordion from '$components/primitives/accordion/Accordion.svelte';
 	import Checkbox from '$components/ui/checkbox/Checkbox.svelte';
 	import Badge from '$components/ui/badge/Badge.svelte';
-	import AspectRatio from '$components/ui/aspect-ratio/AspectRatio.svelte';
+	import AspectRatio from '$components/primitives/aspect-ratio/AspectRatio.svelte';
 
 	let labelText = 'Hello world';
 </script>

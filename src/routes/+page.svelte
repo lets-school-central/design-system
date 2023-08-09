@@ -3,6 +3,7 @@
 	import Label from '$components/ui/label/Label.svelte';
 	import Avatar from '$components/ui/avatar/Avatar.svelte';
 	import Accordion from '$components/ui/accordion/Accordion.svelte';
+	import Checkbox from '$components/ui/checkbox/Checkbox.svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -42,3 +43,5 @@
 		</AccordionContent>
 	</AccordionItem>
 </Accordion>
+
+<Checkbox />

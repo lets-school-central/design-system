@@ -30,15 +30,15 @@
 		}
 	);
 
-	interface AnchorElement extends HTMLAnchorAttributes {
-		href?: HTMLAnchorAttributes['href'];
+	type AnchorElement = HTMLAnchorAttributes & {
+		href: string;
 		type?: never;
-	}
+	};
 
-	interface ButtonElement extends HTMLButtonAttributes {
+	type ButtonElement = HTMLButtonAttributes & {
 		type?: HTMLButtonAttributes['type'];
 		href?: never;
-	}
+	};
 
 	export type ButtonVariant = VariantProps<typeof buttonVariants>['variant'];
 	export type ButtonSize = VariantProps<typeof buttonVariants>['size'];

@@ -12,6 +12,7 @@
 	import Dialog from '$components/primitives/dialog/Dialog.svelte';
 
 	import { Terminal } from 'lucide-svelte';
+	import AlertDialog from '$components/primitives/alert-dialog/AlertDialog.svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -118,3 +119,20 @@
 		</DialogFooter>
 	</DialogContent>
 </Dialog>
+
+<AlertDialog let:AlertDialogTrigger let:AlertDialogContent>
+	<AlertDialogTrigger>Show Dialog</AlertDialogTrigger>
+	<AlertDialogContent let:AlertDialogHeader let:AlertDialogFooter>
+		<AlertDialogHeader let:AlertDialogTitle let:AlertDialogDescription>
+			<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+			<AlertDialogDescription>
+				This action cannot be undone. This will permanently delete your account and remove your data
+				from our servers.
+			</AlertDialogDescription>
+		</AlertDialogHeader>
+		<AlertDialogFooter let:AlertDialogCancel let:AlertDialogAction>
+			<AlertDialogCancel>Cancel</AlertDialogCancel>
+			<AlertDialogAction on:click={() => alert('Ok.')}>Continue</AlertDialogAction>
+		</AlertDialogFooter>
+	</AlertDialogContent>
+</AlertDialog>

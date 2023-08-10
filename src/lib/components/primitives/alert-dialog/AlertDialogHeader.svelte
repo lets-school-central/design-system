@@ -1,0 +1,17 @@
+<script lang="ts">
+	import { cn } from '$lib/utils.js';
+
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	import AlertDialogTitle from './AlertDialogTitle.svelte';
+	import AlertDialogDescription from './AlertDialogDescription.svelte';
+
+	type $$Props = HTMLAttributes<HTMLDivElement>;
+
+	let className: string | undefined | null = undefined;
+	export { className as class };
+</script>
+
+<div class={cn('flex flex-col space-y-1.5 text-center sm:text-left', className)} {...$$restProps}>
+	<slot {AlertDialogTitle} {AlertDialogDescription} />
+</div>

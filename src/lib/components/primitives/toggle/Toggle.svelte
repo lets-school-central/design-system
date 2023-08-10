@@ -35,12 +35,13 @@
 	import { cn } from '$lib/utils.js';
 
 	import type { CreateToggleProps } from '@melt-ui/svelte';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 
 	type $$Props = Omit<CreateToggleProps, 'pressed' | 'defaultPressed' | 'onPressedChange'> & {
 		pressed?: CreateToggleProps['defaultPressed'];
 		variant?: ToggleVariant;
 		size?: ToggleSize;
-	};
+	} & HTMLButtonAttributes;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

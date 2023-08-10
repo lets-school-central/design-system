@@ -1,4 +1,5 @@
 <script>
+	import { Terminal, Bold } from 'lucide-svelte';
 	import Button from '$components/primitives/button/Button.svelte';
 	import Label from '$components/primitives/label/Label.svelte';
 	import Avatar from '$components/primitives/avatar/Avatar.svelte';
@@ -10,9 +11,8 @@
 	import Separator from '$components/primitives/separator/Separator.svelte';
 	import Alert from '$components/primitives/alert/Alert.svelte';
 	import Dialog from '$components/primitives/dialog/Dialog.svelte';
-
-	import { Terminal } from 'lucide-svelte';
 	import AlertDialog from '$components/primitives/alert-dialog/AlertDialog.svelte';
+	import Toggle from '$components/primitives/toggle/Toggle.svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -24,8 +24,9 @@
 <Button
 	on:click={() => {
 		labelText = 'Clicked';
-	}}>Click me</Button
->
+	}}
+	>Click me
+</Button>
 
 <Label>{labelText}</Label>
 
@@ -136,3 +137,7 @@
 		</AlertDialogFooter>
 	</AlertDialogContent>
 </AlertDialog>
+
+<Toggle variant="outline" aria-label="toggle bold">
+	<Bold class="h-4 w-4" />
+</Toggle>

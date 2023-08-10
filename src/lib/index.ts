@@ -11,3 +11,4 @@ export { default as Input } from '$components/primitives/input/Input.svelte';
 export { default as Label } from '$components/primitives/label/Label.svelte';
 export { default as Separator } from '$components/primitives/separator/Separator.svelte';
 export { default as Textarea } from '$components/primitives/textarea/Textarea.svelte';
+export { default as Toggle } from '$components/primitives/toggle/Toggle.svelte';

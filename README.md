@@ -1,58 +1,118 @@
-# create-svelte
+# Let's School Central Design System
 
-Everything you need to build a Svelte library, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This design system is inspired by the work of [shadcn](https://ui.shadcn.com/) and [shadcn-svelte by huntabyte](https://www.shadcn-svelte.com/).
 
-Read more about creating a library [in the docs](https://kit.svelte.dev/docs/packaging).
+## Getting Started
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+### Install
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+pnpm add -D @lets-school-central/design-system
 ```
 
-## Developing
+You will also need to install [melt-ui](https://www.melt-ui.com/).
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Usage
 
-```bash
-npm run dev
+In your `tailwind.config.js` file, add the following:
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```js
+module.exports = {
+  // ...
+  content: ['./node_modules/@lets-school-central/design-system/components/**/*.{js,svelte}'],
+  plugins: [require('@lets-school-central/design-system/plugin')],
+  // ...
+}
 ```
 
-Everything inside `src/lib` is part of your library, everything inside `src/routes` can be used as a showcase or preview app.
+In your `src/app.postcss` file, add the following:
 
-## Building
+```postcss
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-To build your library:
+@layer base {
+	:root {
+		--background: 0 0% 100%;
+		--foreground: 222.2 47.4% 11.2%;
 
-```bash
-npm run package
+		--muted: 210 40% 96.1%;
+		--muted-foreground: 215.4 16.3% 46.9%;
+
+		--popover: 0 0% 100%;
+		--popover-foreground: 222.2 47.4% 11.2%;
+
+		--border: 214.3 31.8% 91.4%;
+		--input: 214.3 31.8% 91.4%;
+
+		--card: 0 0% 100%;
+		--card-foreground: 222.2 47.4% 11.2%;
+
+		--primary: 222.2 47.4% 11.2%;
+		--primary-foreground: 210 40% 98%;
+
+		--secondary: 210 40% 96.1%;
+		--secondary-foreground: 222.2 47.4% 11.2%;
+
+		--accent: 210 40% 96.1%;
+		--accent-foreground: 222.2 47.4% 11.2%;
+
+		--destructive: 0 92% 38%;
+		--destructive-foreground: 210 40% 98%;
+
+		--ring: 215 20.2% 65.1%;
+
+		--radius: 0.5rem;
+	}
+
+	.dark {
+		--background: 224 71% 4%;
+		--foreground: 213 31% 91%;
+
+		--muted: 223 47% 11%;
+		--muted-foreground: 215.4 16.3% 56.9%;
+
+		--accent: 216 34% 17%;
+		--accent-foreground: 210 40% 98%;
+
+		--popover: 224 71% 4%;
+		--popover-foreground: 215 20.2% 65.1%;
+
+		--border: 216 34% 17%;
+		--input: 216 34% 17%;
+
+		--card: 224 71% 4%;
+		--card-foreground: 213 31% 91%;
+
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 1.2%;
+
+		--secondary: 222.2 47.4% 11.2%;
+		--secondary-foreground: 210 40% 98%;
+
+		--destructive: 359 51% 48%;
+		--destructive-foreground: 210 40% 98%;
+
+		--ring: 216 34% 17%;
+
+		--radius: 0.5rem;
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+		font-feature-settings: 'rlig' 1, 'calt' 1;
+	}
+}
 ```
 
-To create a production version of your showcase app:
+You can also use the pregenerated `app.postcss` file by importing it in your `src/routes/+layout.svelte` file:
 
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-
-## Publishing
-
-Go into the `package.json` and give your package the desired name through the `"name"` option. Also consider adding a `"license"` field and point it to a `LICENSE` file which you can create from a template (one popular option is the [MIT license](https://opensource.org/license/mit/)).
-
-To publish your library to [npm](https://www.npmjs.com):
-
-```bash
-npm publish
+```ts
+import '@lets-school-central/design-system/index.min.css';
 ```

@@ -1,32 +1,39 @@
+<script lang="ts" context="module">
+	export const dialogContextKey = Symbol('melt:dialog');
+
+	const DEFAULT_PROPS = {
+		preventScroll: true,
+		closeOnEscape: true,
+		closeOnOutsideClick: true,
+		forceVisible: false,
+		open: undefined
+	} as const;
+</script>
+
 <script lang="ts">
+	import { createDialog } from '@melt-ui/svelte';
+	import { setContext } from 'svelte';
 	import DialogTrigger from '$components/primitives/dialog/DialogTrigger.svelte';
 	import DialogContent from '$components/primitives/dialog/DialogContent.svelte';
 
-	import { createDialog } from '@melt-ui/svelte';
-	import { setContext } from 'svelte';
+	import type { CreateDialogProps } from '@melt-ui/svelte';
 
-	import type { DialogProps } from './index.js';
+	type $$Props = Omit<CreateDialogProps, 'role' | 'portal'> & {
+		open?: CreateDialogProps['defaultOpen'];
+	};
 
-	const DEFAULT_PREVENT_SCROLL = true;
-	const DEFAULT_CLOSE_ON_ESCAPE = true;
-	const DEFAULT_CLOSE_ON_OUTSIDE_CLICK = true;
-	const DEFAULT_PORTAL = null;
-	const DEFAULT_FORCE_VISIBLE = false;
-
-	type $$Props = DialogProps;
-
-	export let preventScroll: $$Props['preventScroll'] = undefined;
-	export let closeOnEscape: $$Props['closeOnEscape'] = undefined;
-	export let closeOnOutsideClick: $$Props['closeOnOutsideClick'] = undefined;
-	export let portal: $$Props['portal'] = undefined;
-	export let forceVisible: $$Props['forceVisible'] = undefined;
-	export let open: $$Props['open'] = undefined;
+	export let preventScroll: $$Props['preventScroll'] = DEFAULT_PROPS.preventScroll;
+	export let closeOnEscape: $$Props['closeOnEscape'] = DEFAULT_PROPS.closeOnEscape;
+	export let closeOnOutsideClick: $$Props['closeOnOutsideClick'] =
+		DEFAULT_PROPS.closeOnOutsideClick;
+	export let forceVisible: $$Props['forceVisible'] = DEFAULT_PROPS.forceVisible;
+	export let open: $$Props['open'] = DEFAULT_PROPS.open;
 
 	const dialog = createDialog({
+		role: 'dialog',
 		preventScroll,
 		closeOnEscape,
 		closeOnOutsideClick,
-		portal,
 		forceVisible,
 		defaultOpen: open ?? false,
 		onOpenChange: ({ next }) => {
@@ -34,19 +41,17 @@
 			return next;
 		}
 	});
-	setContext('melt:dialog', dialog);
+	setContext(dialogContextKey, dialog);
 	const {
 		states: { open: localOpen },
 		options
 	} = dialog;
 
 	$: open !== undefined && localOpen.set(open);
-
-	$: options.preventScroll.set(preventScroll ?? DEFAULT_PREVENT_SCROLL);
-	$: options.closeOnEscape.set(closeOnEscape ?? DEFAULT_CLOSE_ON_ESCAPE);
-	$: options.closeOnOutsideClick.set(closeOnOutsideClick ?? DEFAULT_CLOSE_ON_OUTSIDE_CLICK);
-	$: options.portal.set(portal ?? DEFAULT_PORTAL);
-	$: options.forceVisible.set(forceVisible ?? DEFAULT_FORCE_VISIBLE);
+	$: options.preventScroll.set(preventScroll ?? DEFAULT_PROPS.preventScroll);
+	$: options.closeOnEscape.set(closeOnEscape ?? DEFAULT_PROPS.closeOnEscape);
+	$: options.closeOnOutsideClick.set(closeOnOutsideClick ?? DEFAULT_PROPS.closeOnOutsideClick);
+	$: options.forceVisible.set(forceVisible ?? DEFAULT_PROPS.forceVisible);
 </script>
 
 <slot {DialogTrigger} {DialogContent} />

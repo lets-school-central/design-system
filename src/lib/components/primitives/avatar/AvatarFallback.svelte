@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { melt, createAvatar } from '@melt-ui/svelte';
-	import type { AvatarFallbackProps } from './index.js';
-	import { cn } from '$lib/utils.js';
 	import { getContext } from 'svelte';
+	import { cn } from '$lib/utils.js';
 
-	type $$Props = AvatarFallbackProps;
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	type $$Props = HTMLAttributes<HTMLSpanElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

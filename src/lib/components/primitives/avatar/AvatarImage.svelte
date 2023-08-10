@@ -1,21 +1,23 @@
 <script lang="ts">
 	import { createAvatar, melt } from '@melt-ui/svelte';
-	import type { AvatarImageProps } from './index.js';
-	import { cn } from '$lib/utils.js';
 	import { getContext } from 'svelte';
+	import { cn } from '$lib/utils.js';
 
-	type $$Props = AvatarImageProps;
+	import type { HTMLImgAttributes } from 'svelte/elements';
+
+	type $$Props = HTMLImgAttributes;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let src: $$Props['src'] = undefined;
-	export let alt: $$Props['alt'] = undefined;
+	export let src: $$Props['src'];
+	export let alt: $$Props['alt'];
 
 	const {
 		elements: { image },
 		options
 	} = getContext<ReturnType<typeof createAvatar>>('melt:avatar');
-	$: if (src) options.src.set(src);
+
+	$: src != undefined && options.src.set(src);
 </script>
 
 <img

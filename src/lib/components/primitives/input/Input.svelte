@@ -1,3 +1,9 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		value: ''
+	};
+</script>
+
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
 
@@ -7,7 +13,7 @@
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let value: $$Props['value'] = undefined;
+	export let value: $$Props['value'] = DEFAULT_PROPS.value;
 </script>
 
 <input

@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { createLabel, melt } from '@melt-ui/svelte';
-	import type { LabelProps } from './index.js';
+	import { cn } from '$lib/utils.js';
+
+	import type { HTMLLabelAttributes } from 'svelte/elements';
+
+	type $$Props = HTMLLabelAttributes;
+
+	let className: string | undefined | null = undefined;
+	export { className as class };
 
 	const {
 		elements: { root: label }
 	} = createLabel();
-
-	import { cn } from '$lib/utils.js';
-
-	type $$Props = LabelProps;
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
 </script>
 
 <label

@@ -1,19 +1,29 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		variant: 'primary'
+	} as const;
+</script>
+
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
 	import Button from '$components/primitives/button/Button.svelte';
+	import { alertDialogContextKey } from './AlertDialog.svelte';
 
-	import type { ButtonProps } from '$components/primitives/button/index.js';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { ButtonVariant } from '$components/primitives/button/Button.svelte';
 
-	type $$Props = ButtonProps;
+	type $$Props = HTMLButtonAttributes & {
+		variant?: ButtonVariant;
+	};
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let variant: $$Props['variant'] = 'primary';
+	export let variant: $$Props['variant'] = DEFAULT_PROPS.variant;
 
 	const {
 		elements: { close }
-	} = getContext<ReturnType<typeof createDialog>>('melt:alert-dialog');
+	} = getContext<ReturnType<typeof createDialog>>(alertDialogContextKey);
 </script>
 
 <div use:melt={$close}>

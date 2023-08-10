@@ -2,11 +2,11 @@
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
 	import { cn } from '$lib/utils.js';
-
-	import type { HTMLAttributes } from 'svelte/elements';
-
+	import { alertDialogContextKey } from './AlertDialog.svelte';
 	import AlertDialogHeader from './AlertDialogHeader.svelte';
 	import AlertDialogFooter from './AlertDialogFooter.svelte';
+
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	type $$Props = HTMLAttributes<HTMLDivElement>;
 
@@ -16,7 +16,7 @@
 	const {
 		elements: { content, overlay, portalled },
 		states: { open }
-	} = getContext<ReturnType<typeof createDialog>>('melt:alert-dialog');
+	} = getContext<ReturnType<typeof createDialog>>(alertDialogContextKey);
 </script>
 
 <div use:melt={$portalled}>

@@ -1,12 +1,15 @@
 <script lang="ts">
-	import { cn } from '$lib/utils.js';
 	import { createAccordion, melt } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import { cn } from '$lib/utils.js';
+	import { accordionContextKey } from './Accordion.svelte';
+	import { accordionItemContextKey } from './AccordionItem.svelte';
 
-	import type { AccordionContentProps, AccordionItemBaseProps } from './index.js';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import type { AccordionItemBaseProps } from './AccordionItem.svelte';
 
-	type $$Props = AccordionContentProps;
+	type $$Props = HTMLAttributes<HTMLDivElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -14,8 +17,8 @@
 	const {
 		elements: { content },
 		helpers: { isSelected }
-	} = getContext<ReturnType<typeof createAccordion>>('melt:accordion');
-	const item = getContext<AccordionItemBaseProps>('melt:accordion:item');
+	} = getContext<ReturnType<typeof createAccordion>>(accordionContextKey);
+	const item = getContext<AccordionItemBaseProps>(accordionItemContextKey);
 </script>
 
 {#if $isSelected(item.value)}

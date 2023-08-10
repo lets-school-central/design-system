@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
-	import type { AlertDescriptionProps } from '$components/primitives/alert/index.js';
 
-	type $$Props = AlertDescriptionProps;
+	import type { HTMLAttributes } from 'svelte/elements';
+
+	type $$Props = HTMLAttributes<HTMLDivElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

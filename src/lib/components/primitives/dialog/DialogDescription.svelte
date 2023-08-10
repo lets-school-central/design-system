@@ -2,17 +2,18 @@
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
 	import { cn } from '$lib/utils.js';
+	import { dialogContextKey } from './Dialog.svelte';
 
-	import type { DialogDescriptionProps } from './index.js';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	type $$Props = DialogDescriptionProps;
+	type $$Props = HTMLAttributes<HTMLDivElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
 	const {
 		elements: { description }
-	} = getContext<ReturnType<typeof createDialog>>('melt:dialog');
+	} = getContext<ReturnType<typeof createDialog>>(dialogContextKey);
 </script>
 
 <div

@@ -1,19 +1,31 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		variant: 'outline'
+	} as const;
+</script>
+
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
+	import { dialogContextKey } from './Dialog.svelte';
 	import Button from '$components/primitives/button/Button.svelte';
 
-	import type { DialogTriggerProps } from './index.js';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { ButtonVariant } from '$components/primitives/button/Button.svelte';
 
-	type $$Props = DialogTriggerProps;
+	type $$Props = HTMLButtonAttributes & {
+		variant?: ButtonVariant;
+	};
+
+	export let variant: $$Props['variant'] = DEFAULT_PROPS.variant;
 
 	const {
 		elements: { trigger }
-	} = getContext<ReturnType<typeof createDialog>>('melt:dialog');
+	} = getContext<ReturnType<typeof createDialog>>(dialogContextKey);
 </script>
 
 <div use:melt={$trigger}>
-	<Button {...$$restProps}>
+	<Button {variant} {...$$restProps}>
 		<slot />
 	</Button>
 </div>

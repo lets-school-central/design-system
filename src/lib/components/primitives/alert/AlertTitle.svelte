@@ -1,16 +1,26 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		level: 5
+	} as const;
+</script>
+
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
-	import type { AlertTitleProps } from '$components/primitives/alert/index.js';
 
-	type $$Props = AlertTitleProps;
+	import type { HTMLAttributes } from 'svelte/elements';
+	import type { HeadingLevel } from '$lib/types.js';
+
+	type $$Props = {
+		level?: HeadingLevel;
+	} & HTMLAttributes<HTMLHeadingElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let level: $$Props['level'] = 5;
+	export let level: $$Props['level'] = DEFAULT_PROPS.level;
 </script>
 
 <svelte:element
-	this={`h${level ?? 5}`}
+	this={`h${level ?? DEFAULT_PROPS.level}`}
 	class={cn('mb-1 font-medium leading-none tracking-tight', className)}
 	{...$$restProps}
 >

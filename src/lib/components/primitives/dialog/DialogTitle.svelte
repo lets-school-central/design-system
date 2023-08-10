@@ -1,23 +1,33 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		level: 2
+	} as const;
+</script>
+
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
 	import { cn } from '$lib/utils.js';
+	import { dialogContextKey } from './Dialog.svelte';
 
-	import type { DialogTitleProps } from './index.js';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import type { HeadingLevel } from '$lib/types.js';
 
-	type $$Props = DialogTitleProps;
+	type $$Props = {
+		level?: HeadingLevel;
+	} & HTMLAttributes<HTMLHeadingElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let level: $$Props['level'] = 2;
+	export let level: $$Props['level'] = DEFAULT_PROPS.level;
 
 	const {
 		elements: { title }
-	} = getContext<ReturnType<typeof createDialog>>('melt:dialog');
+	} = getContext<ReturnType<typeof createDialog>>(dialogContextKey);
 </script>
 
 <svelte:element
-	this={`h${level ?? 2}`}
+	this={`h${level ?? DEFAULT_PROPS.level}`}
 	class={cn('text-lg font-semibold leading-none tracking-tight', className)}
 	use:melt={$title}
 	{...$$restProps}

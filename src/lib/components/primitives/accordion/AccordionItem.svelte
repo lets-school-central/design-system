@@ -1,25 +1,35 @@
-<script lang="ts">
-	import AccordionHeader from './AccordionHeader.svelte';
-	import AccordionContent from './AccordionContent.svelte';
+<script lang="ts" context="module">
+	export type AccordionItemBaseProps = { value: string; disabled?: boolean };
 
-	import { cn } from '$lib/utils.js';
+	export const accordionItemContextKey = Symbol('melt:accordion:item');
+
+	const DEFAULT_PROPS = {
+		disabled: false
+	} as const;
+</script>
+
+<script lang="ts">
 	import { createAccordion, melt } from '@melt-ui/svelte';
 	import { getContext, setContext } from 'svelte';
+	import { cn } from '$lib/utils.js';
+	import AccordionHeader from './AccordionHeader.svelte';
+	import AccordionContent from './AccordionContent.svelte';
+	import { accordionContextKey } from './Accordion.svelte';
 
-	import type { AccordionItemProps } from './index.js';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	type $$Props = AccordionItemProps;
+	type $$Props = AccordionItemBaseProps & HTMLAttributes<HTMLDivElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 	export let value: $$Props['value'];
-	export let disabled: $$Props['disabled'] = undefined;
+	export let disabled: $$Props['disabled'] = DEFAULT_PROPS.disabled;
 
 	const {
 		elements: { item }
-	} = getContext<ReturnType<typeof createAccordion>>('melt:accordion');
+	} = getContext<ReturnType<typeof createAccordion>>(accordionContextKey);
 
-	setContext('melt:accordion:item', { value, disabled });
+	setContext(accordionItemContextKey, { value, disabled });
 </script>
 
 <div use:melt={$item({ value, disabled })} class={cn('border-b', className)} {...$$restProps}>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
 
-	import type { DialogFooterProps } from '$components/primitives/dialog/index.js';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	type $$Props = DialogFooterProps;
+	type $$Props = HTMLAttributes<HTMLDivElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

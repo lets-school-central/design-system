@@ -1,30 +1,33 @@
+<script lang="ts" context="module">
+	export const alertDialogContextKey = Symbol('melt:alert-dialog');
+
+	const DEFAULT_PROPS = {
+		preventScroll: true,
+		closeOnEscape: true,
+		closeOnOutsideClick: false,
+		forceVisible: false,
+		open: false
+	} as const;
+</script>
+
 <script lang="ts">
 	import { createDialog } from '@melt-ui/svelte';
 	import { setContext } from 'svelte';
-
-	import type { CreateDialogProps } from '@melt-ui/svelte';
-
 	import AlertDialogContent from './AlertDialogContent.svelte';
 	import AlertDialogTrigger from './AlertDialogTrigger.svelte';
 
-	const DEFAULT_PREVENT_SCROLL = true;
-	const DEFAULT_CLOSE_ON_ESCAPE = true;
-	const DEFAULT_CLOSE_ON_OUTSIDE_CLICK = false;
-	const DEFAULT_FORCE_VISIBLE = false;
-	const DEFAULT_OPEN = false;
+	import type { CreateDialogProps } from '@melt-ui/svelte';
 
-	type $$Props = Omit<
-		CreateDialogProps,
-		'role' | 'open' | 'defaultOpen' | 'onOpenChange' | 'portal'
-	> & {
+	type $$Props = {
 		open?: CreateDialogProps['defaultOpen'];
-	};
+	} & Omit<CreateDialogProps, 'role' | 'open' | 'defaultOpen' | 'onOpenChange' | 'portal'>;
 
-	export let preventScroll: $$Props['preventScroll'] = DEFAULT_PREVENT_SCROLL;
-	export let closeOnEscape: $$Props['closeOnEscape'] = DEFAULT_CLOSE_ON_ESCAPE;
-	export let closeOnOutsideClick: $$Props['closeOnOutsideClick'] = DEFAULT_CLOSE_ON_OUTSIDE_CLICK;
-	export let forceVisible: $$Props['forceVisible'] = DEFAULT_FORCE_VISIBLE;
-	export let open: $$Props['open'] = DEFAULT_OPEN;
+	export let preventScroll: $$Props['preventScroll'] = DEFAULT_PROPS.preventScroll;
+	export let closeOnEscape: $$Props['closeOnEscape'] = DEFAULT_PROPS.closeOnEscape;
+	export let closeOnOutsideClick: $$Props['closeOnOutsideClick'] =
+		DEFAULT_PROPS.closeOnOutsideClick;
+	export let forceVisible: $$Props['forceVisible'] = DEFAULT_PROPS.forceVisible;
+	export let open: $$Props['open'] = DEFAULT_PROPS.open;
 
 	const dialog = createDialog({
 		role: 'alertdialog',
@@ -38,18 +41,17 @@
 			return next;
 		}
 	});
-	setContext('melt:alert-dialog', dialog);
+	setContext(alertDialogContextKey, dialog);
 	const {
 		states: { open: localOpen },
 		options
 	} = dialog;
 
 	$: open !== undefined && localOpen.set(open);
-
-	$: options.preventScroll.set(preventScroll ?? DEFAULT_PREVENT_SCROLL);
-	$: options.closeOnEscape.set(closeOnEscape ?? DEFAULT_CLOSE_ON_ESCAPE);
-	$: options.closeOnOutsideClick.set(closeOnOutsideClick ?? DEFAULT_CLOSE_ON_OUTSIDE_CLICK);
-	$: options.forceVisible.set(forceVisible ?? DEFAULT_FORCE_VISIBLE);
+	$: options.preventScroll.set(preventScroll ?? DEFAULT_PROPS.preventScroll);
+	$: options.closeOnEscape.set(closeOnEscape ?? DEFAULT_PROPS.closeOnEscape);
+	$: options.closeOnOutsideClick.set(closeOnOutsideClick ?? DEFAULT_PROPS.closeOnOutsideClick);
+	$: options.forceVisible.set(forceVisible ?? DEFAULT_PROPS.forceVisible);
 </script>
 
 <slot {AlertDialogContent} {AlertDialogTrigger} />

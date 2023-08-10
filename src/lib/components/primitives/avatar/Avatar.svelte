@@ -1,27 +1,35 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		delayMs: 0
+	} as const;
+</script>
+
 <script lang="ts">
+	import { setContext } from 'svelte';
+	import { createAvatar } from '@melt-ui/svelte';
+	import { cn } from '$lib/utils.js';
 	import AvatarImage from './AvatarImage.svelte';
 	import AvatarFallback from './AvatarFallback.svelte';
 
-	import { createAvatar } from '@melt-ui/svelte';
-	import type { AvatarProps } from './index.js';
-	import { cn } from '$lib/utils.js';
-	import { setContext } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
+	import type { CreateAvatarProps } from '@melt-ui/svelte';
 
-	type $$Props = AvatarProps;
+	type $$Props = {
+		delayMs?: CreateAvatarProps['delayMs'];
+	} & HTMLAttributes<HTMLDivElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let delayMs: $$Props['delayMs'] = 0;
+	export let delayMs: $$Props['delayMs'] = DEFAULT_PROPS.delayMs;
 
 	const avatar = createAvatar({
 		src: '',
 		delayMs
 	});
+	setContext('melt:avatar', avatar);
 	const { options } = avatar;
 
-	setContext('melt:avatar', avatar);
-
-	$: options.delayMs.set(delayMs ?? 0);
+	$: options.delayMs.set(delayMs ?? DEFAULT_PROPS.delayMs);
 </script>
 
 <div

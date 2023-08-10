@@ -1,12 +1,11 @@
 <script lang="ts">
+	import { cn } from '$lib/utils.js';
 	import DialogTitle from './DialogTitle.svelte';
 	import DialogDescription from './DialogDescription.svelte';
 
-	import { cn } from '$lib/utils.js';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	import type { DialogHeaderProps } from './index.js';
-
-	type $$Props = DialogHeaderProps;
+	type $$Props = HTMLAttributes<HTMLDivElement>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };

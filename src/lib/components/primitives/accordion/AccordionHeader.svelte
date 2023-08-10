@@ -1,24 +1,34 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		level: 3
+	} as const;
+</script>
+
 <script lang="ts">
-	import { cn } from '$lib/utils.js';
 	import { createAccordion, melt } from '@melt-ui/svelte';
 	import { getContext } from 'svelte';
 	import { ChevronDown } from 'lucide-svelte';
+	import { cn } from '$lib/utils.js';
+	import { accordionContextKey } from './Accordion.svelte';
+	import { accordionItemContextKey } from './AccordionItem.svelte';
 
-	import type { AccordionHeaderProps, AccordionItemBaseProps } from './index.js';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
+	import type { HeadingLevel } from '$lib/types.js';
+	import type { AccordionItemBaseProps } from './AccordionItem.svelte';
 
-	type $$Props = AccordionHeaderProps;
+	type $$Props = { level?: HeadingLevel } & HTMLButtonAttributes;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let level: $$Props['level'] = undefined;
+	export let level: $$Props['level'] = DEFAULT_PROPS.level;
 
 	const {
 		elements: { heading, trigger }
-	} = getContext<ReturnType<typeof createAccordion>>('melt:accordion');
-	const item = getContext<AccordionItemBaseProps>('melt:accordion:item');
+	} = getContext<ReturnType<typeof createAccordion>>(accordionContextKey);
+	const item = getContext<AccordionItemBaseProps>(accordionItemContextKey);
 </script>
 
-<div use:melt={$heading(level ?? 3)} class="flex" {...$$restProps}>
+<div use:melt={$heading(level ?? DEFAULT_PROPS.level)} class="flex" {...$$restProps}>
 	<button
 		use:melt={$trigger(item)}
 		class={cn(

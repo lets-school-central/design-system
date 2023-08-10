@@ -1,18 +1,33 @@
+<script lang="ts" context="module">
+	const DEFAULT_PROPS = {
+		checked: 'indeterminate',
+		disabled: false,
+		required: false,
+		value: undefined
+	} as const;
+</script>
+
 <script lang="ts">
 	import { createCheckbox, melt } from '@melt-ui/svelte';
 	import { Check, Minus } from 'lucide-svelte';
 	import { cn } from '$lib/utils.js';
-	import type { CheckboxProps } from './index.js';
 
-	type $$Props = CheckboxProps;
+	import type { CreateCheckboxProps } from '@melt-ui/svelte';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
+
+	type $$Props = {
+		name: string;
+		checked?: CreateCheckboxProps['defaultChecked'];
+	} & Omit<CreateCheckboxProps, 'checked' | 'defaultChecked' | 'onCheckedChange' | 'name'> &
+		HTMLButtonAttributes;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
-	export let checked: CheckboxProps['checked'] = 'indeterminate';
-	export let disabled: CheckboxProps['disabled'] = undefined;
-	export let name: CheckboxProps['name'] = undefined;
-	export let required: CheckboxProps['required'] = undefined;
-	export let value: CheckboxProps['value'] = undefined;
+	export let checked: $$Props['checked'] = DEFAULT_PROPS.checked;
+	export let disabled: $$Props['disabled'] = DEFAULT_PROPS.disabled;
+	export let name: $$Props['name'];
+	export let required: $$Props['required'] = DEFAULT_PROPS.required;
+	export let value: $$Props['value'] = DEFAULT_PROPS.value;
 
 	const {
 		elements: { root, input },
@@ -32,10 +47,9 @@
 	});
 
 	$: checked !== undefined && localChecked.set(checked);
-
-	$: options.disabled.set(disabled ?? false);
-	$: options.name.set(name);
-	$: options.required.set(required ?? false);
+	$: options.disabled.set(disabled ?? DEFAULT_PROPS.disabled);
+	$: name !== undefined && options.name.set(name);
+	$: options.required.set(required ?? DEFAULT_PROPS.required);
 	$: options.value.set(value);
 </script>
 

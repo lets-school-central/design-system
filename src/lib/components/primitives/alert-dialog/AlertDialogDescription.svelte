@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { createDialog, melt } from '@melt-ui/svelte';
-	import { cn } from '$lib/utils.js';
 	import { getContext } from 'svelte';
+	import { cn } from '$lib/utils.js';
+	import { alertDialogContextKey } from './AlertDialog.svelte';
 
 	import type { HTMLAttributes } from 'svelte/elements';
 
@@ -12,7 +13,7 @@
 
 	const {
 		elements: { description }
-	} = getContext<ReturnType<typeof createDialog>>('melt:alert-dialog');
+	} = getContext<ReturnType<typeof createDialog>>(alertDialogContextKey);
 </script>
 
 <div

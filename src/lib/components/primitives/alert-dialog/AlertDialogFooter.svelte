@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { cn } from '$lib/utils.js';
-
-	import type { HTMLAttributes } from 'svelte/elements';
-
 	import AlertDialogAction from './AlertDialogAction.svelte';
 	import AlertDialogCancel from './AlertDialogCancel.svelte';
+
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	type $$Props = HTMLAttributes<HTMLDivElement>;
 

@@ -30,7 +30,7 @@
 <Label>{labelText}</Label>
 
 <Avatar let:AvatarImage let:AvatarFallback>
-	<AvatarImage src="https://randomuser.me/api/portraits/women/33.jpg" />
+	<AvatarImage src="https://randomuser.me/api/portraits/women/33.jpg" alt="👩‍💻" />
 	<AvatarFallback>👩‍💻</AvatarFallback>
 </Avatar>
 
@@ -53,7 +53,7 @@
 	</AccordionItem>
 </Accordion>
 
-<Checkbox />
+<Checkbox name="checkbox" />
 
 <div class="flex items-center space-x-3.5">
 	<Badge>badge</Badge>

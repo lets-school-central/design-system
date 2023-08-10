@@ -1,5 +1,6 @@
 import type { CreateAccordionProps } from '@melt-ui/svelte';
 import type { HTMLAttributes, HTMLButtonAttributes } from 'svelte/elements';
+import type { HeadingLevel } from '$lib/types.js';
 
 export type AccordionProps = Omit<
 	CreateAccordionProps,
@@ -11,7 +12,7 @@ export type AccordionProps = Omit<
 export type AccordionItemBaseProps = { value: string; disabled?: boolean };
 export type AccordionItemProps = AccordionItemBaseProps & HTMLAttributes<HTMLDivElement>;
 
-export type AccordionHeaderProps = { level?: 1 | 2 | 3 | 4 | 5 | 6 } & HTMLButtonAttributes;
+export type AccordionHeaderProps = { level?: HeadingLevel } & HTMLButtonAttributes;
 
 export type AccordionContentProps = HTMLAttributes<HTMLDivElement>;
 

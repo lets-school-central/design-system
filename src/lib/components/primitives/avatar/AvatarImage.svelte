@@ -5,7 +5,10 @@
 
 	import type { HTMLImgAttributes } from 'svelte/elements';
 
-	type $$Props = HTMLImgAttributes;
+	type $$Props = {
+		src: string;
+		alt: string;
+	} & Omit<HTMLImgAttributes, 'src' | 'alt'>;
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
@@ -17,7 +20,7 @@
 		options
 	} = getContext<ReturnType<typeof createAvatar>>('melt:avatar');
 
-	$: src != undefined && options.src.set(src);
+	$: src !== undefined && options.src.set(src);
 </script>
 
 <img

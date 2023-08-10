@@ -5,6 +5,7 @@ export { default as AspectRatio } from '$components/primitives/aspect-ratio/Aspe
 export { default as Avatar } from '$components/primitives/avatar/Avatar.svelte';
 export { default as Badge } from '$components/primitives/badge/Badge.svelte';
 export { default as Button } from '$components/primitives/button/Button.svelte';
+export { default as Card } from '$components/primitives/card/Card.svelte';
 export { default as Checkbox } from '$components/primitives/checkbox/Checkbox.svelte';
 export { default as Dialog } from '$components/primitives/dialog/Dialog.svelte';
 export { default as Input } from '$components/primitives/input/Input.svelte';

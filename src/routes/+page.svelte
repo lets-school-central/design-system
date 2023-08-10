@@ -13,6 +13,7 @@
 	import Dialog from '$components/primitives/dialog/Dialog.svelte';
 	import AlertDialog from '$components/primitives/alert-dialog/AlertDialog.svelte';
 	import Toggle from '$components/primitives/toggle/Toggle.svelte';
+	import Card from '$components/primitives/card/Card.svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -141,3 +142,16 @@
 <Toggle variant="outline" aria-label="toggle bold">
 	<Bold class="h-4 w-4" />
 </Toggle>
+
+<Card let:CardHeader let:CardContent let:CardFooter>
+	<CardHeader let:CardTitle let:CardDescription>
+		<CardTitle>Card Title</CardTitle>
+		<CardDescription>Card Description</CardDescription>
+	</CardHeader>
+	<CardContent>
+		<p>Card Content</p>
+	</CardContent>
+	<CardFooter>
+		<p>Card Footer</p>
+	</CardFooter>
+</Card>

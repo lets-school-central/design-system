@@ -9,6 +9,7 @@
 	import Input from '$components/primitives/input/Input.svelte';
 	import Separator from '$components/primitives/separator/Separator.svelte';
 	import Alert from '$components/primitives/alert/Alert.svelte';
+	import Dialog from '$components/primitives/dialog/Dialog.svelte';
 
 	import { Terminal } from 'lucide-svelte';
 
@@ -90,3 +91,30 @@
 	<AlertTitle>Heads up!</AlertTitle>
 	<AlertDescription>You can add components to your app using the cli.</AlertDescription>
 </Alert>
+
+<Dialog let:DialogTrigger let:DialogContent>
+	<DialogTrigger variant="outline">Edit Profile</DialogTrigger>
+	<DialogContent let:DialogHeader let:DialogFooter>
+		<DialogHeader let:DialogTitle let:DialogDescription>
+			<DialogTitle>Edit profile</DialogTitle>
+			<DialogDescription>
+				Make changes to your profile here. Click save when you're done.
+			</DialogDescription>
+		</DialogHeader>
+
+		<div class="grid gap-4 py-4">
+			<div class="grid grid-cols-4 items-center gap-4">
+				<Label class="text-right">Name</Label>
+				<Input id="name" value="Pedro Duarte" class="col-span-3" />
+			</div>
+			<div class="grid grid-cols-4 items-center gap-4">
+				<Label class="text-right">Username</Label>
+				<Input id="username" value="@peduarte" class="col-span-3" />
+			</div>
+		</div>
+
+		<DialogFooter>
+			<Button type="submit">Save changes</Button>
+		</DialogFooter>
+	</DialogContent>
+</Dialog>

@@ -8,6 +8,9 @@
 	import AspectRatio from '$components/primitives/aspect-ratio/AspectRatio.svelte';
 	import Input from '$components/primitives/input/Input.svelte';
 	import Separator from '$components/primitives/separator/Separator.svelte';
+	import Alert from '$components/primitives/alert/Alert.svelte';
+
+	import { Terminal } from 'lucide-svelte';
 
 	let labelText = 'Hello world';
 </script>
@@ -81,3 +84,9 @@
 		<div>Source</div>
 	</div>
 </div>
+
+<Alert variant="destructive" let:AlertTitle let:AlertDescription>
+	<Terminal class="h-4 w-4" />
+	<AlertTitle>Heads up!</AlertTitle>
+	<AlertDescription>You can add components to your app using the cli.</AlertDescription>
+</Alert>
